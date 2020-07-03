@@ -13,7 +13,7 @@ public class UserDAO implements UserDaoInterface {
 		
 		 try {
 			Connection con = ConnectionManager.getConnection();
-		    String sql = "INSERT INTO USERS(email, password)VALUES(?,?)";
+		    String sql = "insert into users(email, password)values(?,?)";
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1,user.getEmail());
 			st.setString(2,user.getPassword());	
@@ -21,16 +21,16 @@ public class UserDAO implements UserDaoInterface {
 			return result;	
 		} 
 		 catch (Exception e) {
-			System.out.println(e);
+			 e.printStackTrace();
 		}
 		return 0;
 	}
-	
+
 	public boolean loginUser(User user)  {
 		try {
 			Connection con = ConnectionManager.getConnection();
 			boolean result = false;		     
-			String sql="SELECT * FROM USERS WHERE email = ? and password = ? ";
+			String sql="select * from users where email = ? and password = ? ";
 			PreparedStatement st = con.prepareStatement(sql);	
 			String email=user.getEmail();
 			String password=user.getPassword();
@@ -42,7 +42,7 @@ public class UserDAO implements UserDaoInterface {
 			return result;
 		} 
 		catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		return false;
 	}
